@@ -1,0 +1,551 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* General Reset and Global Styles */
+* {
+  font-family: "Poppins", sans-serif; /* Clean and modern font */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  scroll-padding-top: 2rem;
+  scroll-behavior: smooth;
+}
+/* Color Scheme */
+:root {
+  --main-color: #910479; /* Yellow for key elements */
+  --text-color: #020307; /* Dark text for readability */
+  --bg-color: #fff; /* White background for clean design */
+}
+html::-webkit-scrollbar {
+    width: 0.5rem;
+    background: var(--text-color);
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+body {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+section {
+    padding: 4.5rem 0 1.5rem;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+    transition: 0.5s;
+    background: var(--main-color);
+}
+header.shadow {
+    background: var(--bg-color);
+    box-shadow: 0 0 4px rgb(14 55 54 / 15%);
+}
+header.shadow .navbar a {
+    color: var(--text-color);
+}
+header.shadow .logo {
+    color: var(--text-color);
+}
+.logo{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+.logo .bx{
+    font-size: 24px;
+    color: var(--main-color);
+}
+.navbar {
+    display: flex;
+    column-gap: 5rem;
+}
+.navbar {
+    position: relative;
+}
+.navbar a{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--bg-color);
+}
+.navbar a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.4s all linear;
+}
+.navbar a:hover::after, 
+.navbar .home-active {
+    width: 100%;
+}
+#menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000001;
+    display: none;
+}
+.btn {
+    padding: 0.7rem 1.4rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-weight: 400;
+    border-radius: 0.5rem;
+}
+.btn:hover {
+    background: #f5ff9a;
+}
+.container{
+    width: 100%;
+    min-height: 640px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgb(2,3,7,0.4);
+}
+.container img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+.swiper-pagination-bullet{
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    opacity: 1 !important;
+}
+.swiper-pagination-bullet-active{
+    width: 1.5rem !important;
+    background: var(--main-color) !important;
+}
+.home-text {
+    z-index: 1000;
+    padding: 0 150px;
+    bottom: -17px; /* Align it towards the bottom of the container */
+    left: -7%; /* Center horizontally */
+    position: fixed;
+}
+.home-active span {
+    color: var(--bg-color);
+    font-weight: 500;
+    text-decoration: uppercase;
+}
+.home-active h1 {
+    color: var(--bg-color);
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.home-text .btn {
+        display: inline-block;
+        margin-right: 1rem; 
+        margin-bottom: 2rem;
+}
+.play{
+    position: fixed;
+    right: 4rem;
+    bottom: 10%;
+}
+.play .bx {
+    background: var(--bg-color);
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: 4px solid rgb(2,3,7,0.4);
+    color: var(--main-color);
+}
+.play .bx:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    transition: 0.2s all linear;
+}
+.heading {
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--main-color);
+}
+.movies-container{
+    max-width: 968px;
+    margin-right: auto;
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.box .box-img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+.box .box-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.box .box-img img:hover{
+    transform: translateY(-10px);
+    transition: 0.2s all linear;
+}
+.box h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.box span{
+    font-size: 13px;
+}
+.coming-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(180px, 1fr));
+    gap: 1rem;
+    overflow: visible;
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    min-height: 500px;
+}
+.coming-container .box-img img:hover {
+    transform: translateY(0);
+}
+.coming-container .box {
+    width: 100%;
+    display: flex; /* Flex to make sure content inside adjusts */
+    justify-content: center;
+    align-items: center;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.coming-container .box:last-child {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.newsletter{
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2rem;
+}
+.newsletter h2{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.newsletter form{
+    background: var(--bg-color);
+    padding: 10px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.newsletter form input {
+    border: none;
+    outline: none;
+}
+.newsletter form .email {
+    width: 280px;
+}
+.newsletter form input::placeholder {
+    color: var(--text-color);
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.newsletter .btn{
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+}
+.footer{
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.social {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+.social .bx{
+    background: var(--bg-color);
+    padding: 2px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: 4px solid rgb(2,3,7,0.4);
+    color: var(--main-color);
+}
+.social .bx:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    transition: 0.3s all linear;
+}
+.copyright{
+    padding: 20px;
+    text-align: center;
+    color: var(--bg-color);
+}
+@media (max-width: 1000px){
+    .home-text{
+        padding: 0 100px;
+    }
+}
+@media (max-width: 991px){
+    header {
+        padding: 18px 4%;
+    }
+    section {
+        padding: 50px 4%;
+    }
+    .home-text{
+        padding: 0 4%;
+    }
+    .home-text h1 {
+        font-size: 3rem;
+    }
+}
+@media (max-width: 774px) {
+    header {
+        padding: 12px 4%;
+    }
+    #menu-icon {
+        display: initial;
+        color: var(--bg-color);
+    }
+    header.shadow #menu-icon {
+        color: var(--text-color);
+    }
+    .navbar{
+        position: absolute;
+        top: -570px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-color);
+        row-gap: 1.4rem;
+        padding: 20px;
+        box-shadow: 4px 4px 0 4px rgb(14 55 54 / 15%);
+        transition: 0.2s all linear;
+        text-align: center;
+    }
+    .navbar a {
+        width: 100%;
+        color: var(--text-color);
+    }
+    .navbar a:hover {
+        color: var(--main-color);
+        border-bottom: 2px solid var(--main-color);
+    }  
+    .navbar a::after {
+        display: none;
+    }
+    .navbar.active{
+        top: 100;
+    }
+    .home-text h1 {
+        font-size: 2.4rem;
+    }
+    .btn {
+        padding: 0.6rem 1.2rem;
+    }
+    .movies-container{
+        grid-template-columns: repeat(auto-fit, minmax(160px, auto));
+    }
+}
+@media (max-width: 472px){
+    .newsletter form .email {
+        width: auto;
+    }
+    .footer{
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+    }
+}
+@media (max-width: 370px){
+    header {
+        padding: 6px 4%;
+    }
+    .home-text h1{
+        font-size: 1.7rem;
+    }
+    .play{
+        right: 2rem;
+        bottom: 8%;
+    }
+    .play .bx {
+        padding: 7px;
+    }
+    .movies-container{
+        grid-template-columns: repeat(auto-fit, minmax(140px, auto));
+    }
+    .box .box-img {
+        height: 240px;
+    }
+}
+
+/* Style the comment box */
+#comment-box {
+    max-width: 600px; /* Add a max width for better control */
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 2px solid #444;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    color: #333;
+    resize: vertical;
+    margin: 0 auto; /* Center the comment box */
+}
+
+/* Style the Post Comment button */
+#post-comment-btn {
+    display: block;
+    width: 250px; /* Increase width for a larger button */
+    padding: 15px; /* Increase padding to make the button larger */
+    margin: 15px auto; /* Center the button */
+    font-size: 20px; /* Increase font size for better visibility */
+    font-weight: bold;
+    background-color: var(--main-color); /* Nice main color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Add hover effect */
+#post-comment-btn:hover {
+    background-color: var(--main-color); /* Darker blue on hover */
+}
+
+/* Style for the comment container */
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* Style for the comments section */
+#comments-section {
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto; /* Center the comments section */
+}
+
+/* Center individual comments */
+.comment {
+    background-color: #f1f1f1; /* Light gray background for each comment */
+    margin-bottom: 15px; /* Space between comments */
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+    max-width: 600px; /* Ensure comments don't stretch too wide */
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment strong {
+    color: var(--main-color); /* Use your main color for the name */
+}
+
+/* Fix centering of elements in comment section */
+.comment-container, #comments-section {
+    justify-content: center;
+    align-items: center;
+}                       
+
+@media (max-width: 600px) {
+    #comment-box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #post-comment-btn {
+        width: 100%; /* Full width on small screens */
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .comment-container {
+        width: 90%; /* Slightly smaller width for mobile */
+    }
+}
+
+/* Frame the movie details section */
+.movie-details {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px; /* To make it more compact */
+}
+
+/* Frame for the text (movie details) */
+.movie-details img {
+    display: block;
+    margin: 20px auto;
+    width: 60%; /* Smaller image size */
+    border: 2px solid #444; /* Border around the image */
+    border-radius: 8px;
+    background-color: #f1f1f1; /* Light gray background */
+}
+
+/* Frame for the text */
+.movie-details h1, 
+.movie-details p {
+    padding: 20px;
+    background-color: var(--main-color); /* Light gray background like comment */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #444; /* Border around the text */
+    color: var(--bg-color);
+    font-size: 14px; /* Match the font size of your comments */
+}
+
+/* Footer styling (centered) */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+

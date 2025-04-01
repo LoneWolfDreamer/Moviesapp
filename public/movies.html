@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Details</title>
+</head>
+<body>
+    <h1 id="movie-title"></h1>
+    <video id="movie-player" controls></video>
+    <p id="movie-description"></p>
+
+    <h3>Actors:</h3>
+    <ul id="actor-list"></ul>
+
+    <h3>Reviews:</h3>
+    <ul id="review-list"></ul>
+
+    <form id="review-form">
+        <input type="text" id="review-input" placeholder="Add a review" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="/movie.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><i class='bx bxs-movie'></i> Movies</a>
+    </header>
+
+    <div class="movie-detail" id="movie-detail">
+        <h2 id="movie-title"></h2>
+        <p id="movie-description"></p>
+        <p><strong>Actors:</strong> <span id="movie-actors"></span></p>
+        <button onclick="playMovie()">Play</button>
+        <h3>Comments:</h3>
+        <div id="comments"></div>
+        <input type="text" id="commentInput" placeholder="Write a comment">
+        <button onclick="postComment()">Post</button>
+    </div>
+
+    <script>
+        // Fetch and display movie details
+        async function loadMovieDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+
+            try {
+                const response = await fetch(`/movies/${movieId}`);
+                const data = await response.json();
+
+                document.getElementById('movie-title').textContent = data.movie.title;
+                document.getElementById('movie-description').textContent = data.movie.description;
+                document.getElementById('movie-actors').textContent = data.movie.actors || 'No actors listed';
+
+                const commentsContainer = document.getElementById('comments');
+                commentsContainer.innerHTML = data.reviews.map(review => `
+                    <div class="comment">
+                        <p>${review.comment}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("Error loading movie details:", error);
+            }
+        }
+
+        // Post a new comment
+        async function postComment() {
+            const comment = document.getElementById('commentInput').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+
+            try {
+                await fetch(`/movies/${movieId}/reviews`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ comment }),
+                });
+                alert("Comment posted!");
+                loadMovieDetails();
+            } catch (error) {
+                console.error("Error posting comment:", error);
+            }
+        }
+
+        // Simulate playing the movie
+        function playMovie() {
+            alert("Playing movie...");
+        }
+
+        loadMovieDetails();
+    </script>
+</body>
+</html>
