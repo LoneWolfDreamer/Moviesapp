@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('./db'); // Import database connection
 const app = express();
 const port = 4000;
-require('dotenv').config()
+require('dotenv').config();
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
