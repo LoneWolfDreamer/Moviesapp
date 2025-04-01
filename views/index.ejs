@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>Movies</h1>
+    </header>
+    <section class="movies">
+        <% movies.forEach(movie => { %>
+            <div class="movie">
+                <a href="/movie/<%= movie.id %>">
+                    <img src="/<%= movie.image_path %>" alt="<%= movie.title %>">
+                    <h3><%= movie.title %></h3>
+                    <p><%= movie.genre %> | <%= movie.duration %> min</p>
+                </a>
+            </div>
+        <% }); %>
+    </section>
+</body>
+</html>

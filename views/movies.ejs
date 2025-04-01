@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <header>
+        <h2>Movies</h2>
+        <a href="/"><i class='bx bxs-movie'></i> Home</a>
+    </header>
+
+    <section>
+        <ul>
+            <% movies.forEach(movie => { %>
+                <li>
+                    <a href="/movies/<%= movie.id %>">
+                        <%= movie.title %> - <%= movie.genre %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
+</body>
+</html>
